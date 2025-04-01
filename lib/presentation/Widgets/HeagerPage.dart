@@ -9,10 +9,10 @@ class HeaderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-            margin: EdgeInsets.only(bottom: 30),
+            margin: EdgeInsets.only(bottom: 20),
             alignment: Alignment.bottomRight,
             width: double.infinity,
-            height: 160,
+            height: 120,
             // decoration: BoxDecoration(border: Border.all(width: 2)), //------border------
             child: Container(
               height: 75,
