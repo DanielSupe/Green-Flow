@@ -76,11 +76,13 @@ class _Loginscreen extends State<Loginscreen> {
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Input(nameKey: "user",formUpdate: updateUser,title: "Username",),
                           Input(nameKey: "password",formUpdate: updateUser,title: "Password"),
-                          Expanded(child: Text("Forgotten password",style: TextStyle(color: Colors.white,fontSize: 15 ),)),
+                          Text("Forgotten password",style: TextStyle(color: Colors.white,fontSize: 15 ),),
                           Expanded(child: Center(
+                            // decoration: BoxDecoration(color: Colors.amber),
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color.fromARGB(255, 71, 237, 179), // 🔹 Color de fondo
