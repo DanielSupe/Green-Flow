@@ -9,7 +9,7 @@ class Homescreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarGreenFlow(title: "Welcome to \nGreenFlow"),
+      appBar: AppBarGreenFlow(title: "Bienvenido a \nGreenFlow 🌿⚡"),
       body: Container(
         width: double.infinity,
         margin: EdgeInsets.only(top: 20),
@@ -19,7 +19,7 @@ class Homescreen extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Expanded(child: Container(margin: EdgeInsets.only(top: 20),child: Text("little contex for the app", style: TextStyle(color: Colors.white, fontSize: 20),))),
+            Expanded(child: Container(margin: EdgeInsets.only(top: 20),child: Text("Descubre cómo la movilidad eléctrica está transformando las ciudades de Colombia. ", style: TextStyle(color: Colors.white, fontSize: 18),))),
             Expanded(
               flex: 3,
               child: Container(
@@ -31,7 +31,13 @@ class Homescreen extends StatelessWidget {
                   widthFactor: 0.8, // 🔹 100% del ancho del padre
                   child: Container(
                     decoration: BoxDecoration(color: Colors.white.withOpacity(0.5), borderRadius: BorderRadius.all(Radius.circular(30))),
-                    child: Center(child: Text("50% del contenedor padre")),
+                    child: Center(
+                       child: FractionallySizedBox(
+                        heightFactor: 0.8,
+                        widthFactor: 0.8,
+                        child: Image.asset("assets/icons/iconApp.png",fit: BoxFit.contain,),
+                       ),
+                    ),
                   ),
                 ),
               ),
