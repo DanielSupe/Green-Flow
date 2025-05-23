@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:greenflow/constants/theme.dart';
 import 'package:greenflow/presentation/Widgets/HeagerPage.dart';
 import 'package:greenflow/presentation/Widgets/Input.dart';
+import 'package:greenflow/providers/authentication/login_provider.dart';
+import 'package:provider/provider.dart';
 
 class Loginscreen extends StatefulWidget {
   const Loginscreen({super.key});
@@ -12,7 +14,7 @@ class Loginscreen extends StatefulWidget {
 }
 
 class _Loginscreen extends State<Loginscreen> {
-  var user = {"user": "", "password": ""};
+  var user = {"userName": "", "password": ""};
 
   void updateUser(String key, String value) {
   setState(() {
@@ -20,8 +22,60 @@ class _Loginscreen extends State<Loginscreen> {
   });
 }
 
+
+// @override
+// void didChangeDependencies() {
+//   super.didChangeDependencies();
+//   final authProvider = Provider.of<AuthenticationProvider>(context);
+
+//   if (authProvider.exito) {
+//     WidgetsBinding.instance.addPostFrameCallback((_) {
+//       showDialog(
+//         context: context,
+//         builder: (context) => AlertDialog(
+//           title: const Text("Éxito"),
+//           content: const Text("Login Exitoso."),
+//           actions: [
+//             TextButton(
+//               onPressed: () {
+//                 Navigator.of(context).pop(); // cerrar alerta
+//                 authProvider.reiniciarExito(); // reiniciar estado
+//                 context.push("/Home"); // navegar después de cerrar alerta
+//               },
+//               child: const Text("OK"),
+//             )
+//           ],
+//         ),
+//       );
+//     });
+//   }
+// }
+
   @override
   Widget build(BuildContext context) {
+      final authProvider = Provider.of<AuthenticationProvider>(context);
+
+  if (authProvider.exito) {
+    Future.microtask(() {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text("Éxito"),
+          content: const Text("Login Exitoso."),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // cerrar alerta
+                authProvider.reiniciarExito(); // reiniciar estado
+                context.push("/menu"); // navegar después de cerrar alerta
+              },
+              child: const Text("OK"),
+            )
+          ],
+        ),
+      );
+    });
+  }
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Column(
@@ -78,7 +132,7 @@ class _Loginscreen extends State<Loginscreen> {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Input(nameKey: "user",formUpdate: updateUser,title: "Username",),
+                          Input(nameKey: "userName",formUpdate: updateUser,title: "Email",),
                           Input(nameKey: "password",formUpdate: updateUser,title: "Password"),
                           Text("Forgotten password",style: TextStyle(color: Colors.white,fontSize: 15 ),),
                           Expanded(child: Center(
@@ -95,7 +149,7 @@ class _Loginscreen extends State<Loginscreen> {
                                 ),
                               ),
                               onPressed: () {
-                                print("Useeeeer $user");
+                                  Provider.of<AuthenticationProvider>(context, listen: false).loginUser(user);
                               },
                               child: Text(
                                 "Log in",

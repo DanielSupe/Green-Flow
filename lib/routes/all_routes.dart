@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:greenflow/presentation/Screens/HomeScreen.dart';
 import 'package:greenflow/presentation/Screens/LoginScreen.dart';
+import 'package:greenflow/presentation/Screens/MenuScreen.dart';
 import 'package:greenflow/presentation/Screens/RegisterScreen.dart';
 
 
@@ -51,6 +52,10 @@ final GoRouter routes = GoRouter(
     GoRoute(
       path: '/register',
       builder: (context, state) => Registerscreen(),
+    ),
+    GoRoute(
+      path: '/menu',
+      builder: (context, state) => Menuscreen(),
     ),
     // GoRoute(
     //   path: '/product/:id', // Ruta dinámica con ID
