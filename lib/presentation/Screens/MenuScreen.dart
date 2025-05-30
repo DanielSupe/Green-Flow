@@ -58,176 +58,278 @@ class _MenuscreenState extends State<Menuscreen> {
     switch (_selectedIndex) {
       case 0:
         return SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Curva decorativa similar a la pantalla de login
-            Container(
-              height: 20,
-              decoration: BoxDecoration(
-                color: Color(0xFF5DDDBC),
-                borderRadius: BorderRadius.vertical(
-                  bottom: Radius.circular(40),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        // Curva decorativa
+        Container(
+          height: 20,
+          decoration: BoxDecoration(
+            color: Color(0xFF5DDDBC),
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(40),
+            ),
+          ),
+        ),
+        
+        // Header principal con logo y título
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              // Icono de la app
+              Container(
+                width: 80,
+                height: 80,
+                decoration: BoxDecoration(
+                  color: Color(0xFF5DDDBC),
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color(0xFF5DDDBC).withOpacity(0.3),
+                      blurRadius: 10,
+                      offset: Offset(0, 5),
+                    ),
+                  ],
+                ),
+                child: Icon(
+                  Icons.eco,
+                  size: 40,
+                  color: Colors.white,
                 ),
               ),
+              SizedBox(height: 16),
+              
+              // Título y descripción
+              Text(
+                'GreenFlow',
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF2C5530),
+                ),
+              ),
+              SizedBox(height: 8),
+              Text(
+                'Datos especializados en movilidad verde',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.grey[600],
+                ),
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                'para Colombia',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.grey[600],
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
+        
+        // Tarjeta informativa principal
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Container(
+            padding: EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Color(0xFF5DDDBC).withOpacity(0.1),
+                  Color(0xFF5DDDBC).withOpacity(0.05),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                color: Color(0xFF5DDDBC).withOpacity(0.2),
+                width: 1,
+              ),
             ),
-            
-            // Bienvenida al usuario
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    backgroundColor: Color(0xFF5DDDBC).withOpacity(0.2),
-                    radius: 30,
-                    child: Icon(
-                      Icons.person,
-                      size: 30,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      Icons.info_outline,
                       color: Color(0xFF5DDDBC),
+                      size: 24,
                     ),
+                    SizedBox(width: 8),
+                    Text(
+                      'Sobre la Aplicación',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF2C5530),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 16),
+                Text(
+                  'GreenFlow centraliza datos sobre vehículos eléctricos en Colombia, facilitando el acceso a información confiable y estructurada para usuarios interesados en la movilidad sostenible.',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.grey[700],
+                    height: 1.5,
                   ),
-                  SizedBox(width: 16),
-                  Column(
+                ),
+              ],
+            ),
+          ),
+        ),
+        
+        SizedBox(height: 24),
+        
+        // Sección de características
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Text(
+            'Características Principales',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF2C5530),
+            ),
+          ),
+        ),
+        
+        SizedBox(height: 16),
+        
+        // Lista de características
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Column(
+            children: [
+              _buildFeatureItem(
+                Icons.electric_car,
+                'Información de Vehículos',
+                'Datos detallados sobre vehículos eléctricos, características técnicas y especificaciones.',
+              ),
+              SizedBox(height: 16),
+              _buildFeatureItem(
+                Icons.analytics,
+                'Análisis y Comparación',
+                'Herramientas para comparar modelos según autonomía, tipo de batería y costo de mantenimiento.',
+              ),
+              SizedBox(height: 16),
+              _buildFeatureItem(
+                Icons.map,
+                'Navegación Intuitiva',
+                'Interfaz fácil de usar con navegación optimizada para una mejor experiencia.',
+              ),
+              SizedBox(height: 16),
+              _buildFeatureItem(
+                Icons.trending_up,
+                'Datos Actualizados',
+                'Información constantemente actualizada sobre el mercado de movilidad eléctrica.',
+              ),
+            ],
+          ),
+        ),
+        
+        SizedBox(height: 24),
+        
+        // Sección de estadísticas
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Container(
+            padding: EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: Color(0xFF5DDDBC),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Column(
+              children: [
+                Text(
+                  'Impacto en Colombia',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+                SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    _buildStatItem('Reducción', 'Emisiones'),
+                    Container(
+                      width: 1,
+                      height: 40,
+                      color: Colors.white.withOpacity(0.3),
+                    ),
+                    _buildStatItem('Optimización', 'Energética'),
+                    Container(
+                      width: 1,
+                      height: 40,
+                      color: Colors.white.withOpacity(0.3),
+                    ),
+                    _buildStatItem('Movilidad', 'Sostenible'),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+        
+        SizedBox(height: 24),
+        
+        // Footer informativo
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Container(
+            padding: EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.grey[50],
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.lightbulb_outline,
+                  color: Color(0xFF5DDDBC),
+                  size: 24,
+                ),
+                SizedBox(width: 12),
+                Expanded(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '¡Hola, Usuario!',
+                        'Explora los Gráficos',
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 14,
                           fontWeight: FontWeight.bold,
+                          color: Color(0xFF2C5530),
                         ),
                       ),
                       Text(
-                        '¿Qué haremos hoy?',
+                        'Descubre análisis detallados en la sección de gráficos',
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 12,
                           color: Colors.grey[600],
                         ),
                       ),
                     ],
                   ),
-                ],
-              ),
-            ),
-            
-            // Buscador
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey[100],
-                  borderRadius: BorderRadius.circular(30),
                 ),
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Buscar...',
-                    prefixIcon: Icon(Icons.search, color: Color(0xFF5DDDBC)),
-                    border: InputBorder.none,
-                    contentPadding: EdgeInsets.symmetric(vertical: 16),
-                  ),
-                ),
-              ),
+              ],
             ),
-            
-            // Sección de categorías
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                'Categorías',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            
-            // Categorías horizontales
-            SizedBox(
-              height: 120,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                padding: EdgeInsets.symmetric(horizontal: 12),
-                children: [
-                  _buildCategoryItem(Icons.favorite, 'Favoritos'),
-                  _buildCategoryItem(Icons.local_mall, 'Productos'),
-                  _buildCategoryItem(Icons.event_note, 'Eventos'),
-                  _buildCategoryItem(Icons.star, 'Destacados'),
-                  _buildCategoryItem(Icons.groups, 'Comunidad'),
-                ],
-              ),
-            ),
-            
-            // Sección destacada
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Destacados',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Ver todo',
-                      style: TextStyle(
-                        color: Color(0xFF5DDDBC),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            
-            // Tarjetas destacadas
-            SizedBox(
-              height: 200,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                padding: EdgeInsets.symmetric(horizontal: 12),
-                children: [
-                  _buildFeaturedItem('Elemento 1', '9.8', 'Descripción breve del elemento destacado 1'),
-                  _buildFeaturedItem('Elemento 2', '9.5', 'Descripción breve del elemento destacado 2'),
-                  _buildFeaturedItem('Elemento 3', '9.2', 'Descripción breve del elemento destacado 3'),
-                ],
-              ),
-            ),
-            
-            // Sección de actividad reciente
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                'Actividad Reciente',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            
-            // Lista de actividades
-            ListView.builder(
-              physics: NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: 3,
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              itemBuilder: (context, index) {
-                return _buildActivityItem(
-                  'Actividad ${index + 1}',
-                  'Hace ${index + 1} hora${index > 0 ? 's' : ''}',
-                  'Descripción breve de la actividad ${index + 1}',
-                );
-              },
-            ),
-            
-            SizedBox(height: 20),
-          ],
+          ),
         ),
-      ); // Aquí puedes agregar el contenido de la página de inicio
+        
+        SizedBox(height: 30),
+      ],
+    ),
+  ); // Aquí puedes agregar el contenido de la página de inicio
       case 1:
           return Container(
             decoration: BoxDecoration(
@@ -293,6 +395,89 @@ class _MenuscreenState extends State<Menuscreen> {
     }
   }
 
+  Widget _buildFeatureItem(IconData icon, String title, String description) {
+  return Container(
+    padding: EdgeInsets.all(16),
+    decoration: BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(15),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black.withOpacity(0.05),
+          blurRadius: 10,
+          offset: Offset(0, 2),
+        ),
+      ],
+    ),
+    child: Row(
+      children: [
+        Container(
+          padding: EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: Color(0xFF5DDDBC).withOpacity(0.1),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Icon(
+            icon,
+            color: Color(0xFF5DDDBC),
+            size: 24,
+          ),
+        ),
+        SizedBox(width: 16),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF2C5530),
+                ),
+              ),
+              SizedBox(height: 4),
+              Text(
+                description,
+                style: TextStyle(
+                  fontSize: 13,
+                  color: Colors.grey[600],
+                  height: 1.3,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+// Función auxiliar para estadísticas
+Widget _buildStatItem(String title, String subtitle) {
+  return Column(
+    children: [
+      Text(
+        title,
+        style: TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
+        textAlign: TextAlign.center,
+      ),
+      Text(
+        subtitle,
+        style: TextStyle(
+          fontSize: 12,
+          color: Colors.white.withOpacity(0.8),
+        ),
+        textAlign: TextAlign.center,
+      ),
+    ],
+  );
+}
+
 
   Widget _RenderGraphics() {
   switch (_selectedGraphics) {
@@ -340,16 +525,16 @@ class _MenuscreenState extends State<Menuscreen> {
             fontSize: 22,
           ),
         ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.notifications_outlined, color: Colors.white),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(Icons.person_outline, color: Colors.white),
-            onPressed: () {},
-          ),
-        ],
+        // actions: [
+        //   IconButton(
+        //     icon: Icon(Icons.notifications_outlined, color: Colors.white),
+        //     onPressed: () {},
+        //   ),
+        //   IconButton(
+        //     icon: Icon(Icons.person_outline, color: Colors.white),
+        //     onPressed: () {},
+        //   ),
+        // ],
       ),
       body: _RenderPage(),
       bottomNavigationBar: Container(
@@ -389,20 +574,14 @@ class _MenuscreenState extends State<Menuscreen> {
               //   label: 'Mensajes',
               // ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.settings_outlined),
-                label: 'Ajustes',
+                icon: Icon(Icons.table_chart_outlined),
+                label: 'Listado',
               ),
             ],
           ),
         ),
       ),
-      floatingActionButton: _selectedIndex == 0
-    ? FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: Color(0xFF5DDDBC),
-        child: Icon(Icons.add),
-      )
-    : null,
+
     );
   }
 

@@ -18,7 +18,7 @@ class LoginService {
     try {
       // final response = await _dio.get("http://192.168.194.98:3000/auth/login");
       final response = await Dio().post(
-      "http://192.168.1.12:3000/auth/login",
+      "http://192.168.1.13:3000/auth/login",
       data: data,
       options: Options(
         headers: {
@@ -85,7 +85,7 @@ class LoginService {
 
   try {
     final response = await Dio().post(
-      "http://192.168.1.12:3000/auth/register",
+      "http://192.168.1.13:3000/auth/register",
       data: data,
       options: Options(
         headers: {
