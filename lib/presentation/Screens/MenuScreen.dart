@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:greenflow/presentation/Widgets/Filters.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 class Menuscreen extends StatefulWidget {
   const Menuscreen({Key? key}) : super(key: key);
@@ -385,7 +386,7 @@ class _MenuscreenState extends State<Menuscreen> {
             ),
           ); // Aquí puedes agregar el contenido de la página de explorar
       case 2:
-        return Container(); // Aquí puedes agregar el contenido de la página de añadir
+        return VehiclesTablePage(); // Aquí puedes agregar el contenido de la página de añadir
       case 3:
         return Container(); // Aquí puedes agregar el contenido de la página de mensajes
       case 4:
